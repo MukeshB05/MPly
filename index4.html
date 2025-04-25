@@ -490,7 +490,7 @@
                 showLoader(results_container);
             }
             
-            let searchQuery = `${encodeURIComponent(query)}&limit=80`;
+            let searchQuery = `${encodeURIComponent(query)}&limit=50`;
             if (page) {
                 page_index++;
                 searchQuery += `&page=${page_index}`;
@@ -542,7 +542,7 @@
     
                 // Show/hide load more button based on results
                 const loadMoreBtn = document.getElementById('loadmore');
-                loadMoreBtn.style.display = results.length < 80 ? 'none' : 'inline-block';
+                loadMoreBtn.style.display = results.length < 50 ? 'none' : 'inline-block';
     
             } catch (error) {
                 showError(results_container, `Error: ${error.message}`);

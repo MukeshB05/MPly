@@ -25,7 +25,7 @@
 
         .song-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(100px, 4fr));
+            grid-template-columns: repeat(auto-fill, minmax(100px, 3fr));
             gap: 1rem;
             padding: 1rem;
         }
@@ -557,4 +557,66 @@
             loadMoreBtn.disabled = true;
             
             doSaavnSearch(lastSearch, false, true).finally(() => {
-                loadMoreBtn.textContent = o
+                loadMoreBtn.textContent = oldText;
+                loadMoreBtn.disabled = false;
+            });
+        });
+    
+        // Progress bar functionality
+        const progressContainer = document.getElementById('progress-container');
+        const progressBar = progressContainer.querySelector('.progress');
+        const audio = document.getElementById('player');
+    
+        progressContainer.addEventListener('click', (e) => {
+            const rect = progressContainer.getBoundingClientRect();
+            const pos = (e.clientX - rect.left) / rect.width;
+            audio.currentTime = pos * audio.duration;
+        });
+    
+        audio.addEventListener('timeupdate', (e) => {
+            const progress = (e.target.currentTime / e.target.duration) * 100;
+            progressBar.style.width = `${progress}%`;
+        });
+    
+        audio.addEventListener('ended', () => {
+            nextTrack();
+        });
+    
+        // Search box enter key handler
+        document.getElementById('saavn-search-box').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                SaavnSearch();
+            }
+        });
+    
+        // Keyboard controls
+        document.addEventListener('keydown', (e) => {
+            if (e.code === 'Space' && e.target.tagName !== 'INPUT') {
+                e.preventDefault();
+                togglePlay();
+            } else if (e.code === 'ArrowLeft' && e.ctrlKey) {
+                previousTrack();
+            } else if (e.code === 'ArrowRight' && e.ctrlKey) {
+                nextTrack();
+            }
+        });
+    
+        // Bitrate change handler
+        document.getElementById('saavn-bitrate').addEventListener('change', () => {
+            if (currentTrackIndex !== -1) {
+                const currentTrack = currentPlaylist[currentTrackIndex];
+                const bitrate = document.getElementById('saavn-bitrate');
+                const bitrate_i = bitrate.options[bitrate.selectedIndex].value;
+                PlayAudio(currentTrack.downloadUrl[bitrate_i].link, currentTrack.id);
+            }
+        });
+    
+        // Start with default search
+        window.addEventListener('load', () => {
+            doSaavnSearch('tamil');
+        });
+    </script>
+    <script>function scroller(){var answer=window.confirm("MUKESH MUSIC 4U allows use to listen your favourite songs at the multi-quality options. With MUKESH MUSIC 4U's intuitive search functionality, you can quickly and easily find your favorite songs. - Website Developed by MUKESH");if(answer){}else{}}window.addEventListener("load",scroller,false);</script>
+    
+</body>
+</html>

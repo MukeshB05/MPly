@@ -241,7 +241,34 @@
                 padding-top: 110px;
                 padding-bottom: 80px;
             }
-        }
+
+            a.avatar {
+                position: fixed;
+                bottom: 15px;
+                right: -100px;
+                animation: slide 0.5s 4.5s forwards;
+                display: block;
+                z-index: 4
+            }
+
+            a.avatar img {
+                border-radius: 100%;
+                width: 44px;
+                border: 2px solid white;
+            }
+
+            @keyframes slide {
+            from {
+                 right: -100px;
+                 transform: rotate(360deg);
+                 opacity: 0;
+            }
+            to {
+                right: 15px;
+                transform: rotate(0deg);
+                opacity: 1;
+            }
+          }
     </style>
 </head>
 <body>
@@ -404,6 +431,7 @@
                         <p class="text-xs text-gray-400 truncate">${track.primaryArtists}</p>
                         <p class="text-xs text-gray-500 mt-1">${track.year} - ${formatDuration(track.duration)}</p>
                     </div>
+                    <a class="avatar" href="https://kkxstreamlive.pages.dev/" title="If you liked this pen, don't forget to heart, share and follow"><img src="//kkxstreamlive.pages.dev/profile512.jpg" /></a>
                 </div>
             `;
         }

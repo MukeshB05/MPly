@@ -241,34 +241,36 @@
                 padding-top: 110px;
                 padding-bottom: 80px;
             }
-
-            a.kkxstream {
-                position: fixed;
-                bottom: 15px;
-                right: -100px;
-                animation: slide 0.5s 4.5s forwards;
-                display: block;
-                z-index: 4
-            }
-
-            a.kkxstream img {
-                border-radius: 100%;
-                width: 44px;
-                border: 2px solid white;
-            }
-
-            @keyframes slide {
-            from {
-                 right: -100px;
-                 transform: rotate(360deg);
-                 opacity: 0;
-            }
-            to {
-                right: 15px;
-                transform: rotate(0deg);
-                opacity: 1;
-            }
           }
+    </style>
+    <style>
+    a.avatar {
+      position: fixed;
+      bottom: 30px;
+      right: -100px;
+      animation: slide 0.5s 4.5s forwards;
+      display: block;
+      z-index: 4;
+    }
+
+    a.avatar img {
+      border-radius: 100%;
+      width: 44px;
+      border: 2px solid white;
+    }
+
+    @keyframes slide {
+      from {
+        right: -100px;
+        transform: rotate(360deg);
+        opacity: 0;
+      }
+      to {
+        right: 30px;
+        transform: rotate(0deg);
+        opacity: 1;
+      }
+    }
     </style>
 </head>
 <body>
@@ -647,7 +649,21 @@
     </script>
     <script>function scroller(){var answer=window.confirm("MUKESH MUSIC 4U allows use to listen your favourite songs at the multi-quality options. With MUKESH MUSIC 4U's intuitive search functionality, you can quickly and easily find your favorite songs. - Website Developed by MUKESH");if(answer){}else{}}window.addEventListener("load",scroller,false);</script>
 
-    <a class="kkxstream" href="https://kkxstreamlive.pages.dev/" title="If you liked this pen, don't forget to heart, share and follow"><img src="https://kkxstreamlive.pages.dev/profile512.jpg"></a>
+      <!-- Avatar -->
+    <a href="https://kkxstreamlive.pages.dev" class="avatar" id="avatarLink">
+    <img src="https://kkxstreamlive.pages.dev/profile512.jpg" alt="Avatar">
+    </a>
+
+      <script>
+    // You can dynamically delay or trigger the animation if needed
+    window.addEventListener('DOMContentLoaded', () => {
+      // Optional JavaScript if you want to control it dynamically
+      const avatar = document.getElementById('avatarLink');
+      setTimeout(() => {
+        avatar.style.animation = "slide 0.5s forwards";
+      }, 4500);
+    });
+      </script>
     
 </body>
 </html>
